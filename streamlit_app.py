@@ -46,10 +46,8 @@ st.write(os.listdir("."))
 
 df = pd.read_csv(
     "mymoviedb (1) (1).csv",
-    lineterminator='\n',
-    encoding='utf-8',
-    on_bad_lines="skip",
-    engine="python"
+    engine="python",
+    on_bad_lines="skip"
 )
 # ==========================
 # Preprocessing
