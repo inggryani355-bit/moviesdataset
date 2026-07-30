@@ -44,7 +44,12 @@ import os
 st.write("File yang ada di folder project:")
 st.write(os.listdir("."))
 
-df = pd.read_csv("mymoviedb (1) (1).csv")
+df = pd.read_csv(
+    "mymoviedb (1) (1).csv",
+    sep=",",
+    encoding="utf-8",
+    on_bad_lines="skip"
+)
 
 # ==========================
 # Preprocessing
