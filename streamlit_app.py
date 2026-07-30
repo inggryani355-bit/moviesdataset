@@ -39,11 +39,12 @@ st.markdown("---")
 # ==========================
 # Load Dataset
 # ==========================
-try:
-    df = pd.read_csv("mymoviedb (1) (1).csv")
-except FileNotFoundError:
-    st.error("Dataset 'mymoviedb (1) (1).csv' tidak ditemukan.")
-    st.stop()
+import os
+
+st.write("File yang ada di folder project:")
+st.write(os.listdir("."))
+
+df = pd.read_csv("mymoviedb (1) (1).csv")
 
 # ==========================
 # Preprocessing
