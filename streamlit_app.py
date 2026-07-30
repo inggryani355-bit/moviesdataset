@@ -49,23 +49,28 @@ df = pd.read_csv(
     engine="python",
     on_bad_lines="skip"
 )
-# ==========================
+
+# ===========================
 # Preprocessing
-# ==========================
+# ===========================
 df["Release_Date"] = pd.to_datetime(df["Release_Date"], errors="coerce")
 df = df.dropna(subset=["Release_Date"])
 
 df["Year"] = df["Release_Date"].dt.year
 
-# ==========================
+numeric_cols = ["Popularity", "Vote_Count", "Vote_Average"]
+for col in numeric_cols:
+    df[col] = pd.to_numeric(df[col], errors="coerce")
+
+# ===========================
 # Ringkasan Dataset
-# ==========================
+# ===========================
 st.header("📊 Ringkasan Dataset")
 
 col1, col2, col3, col4 = st.columns(4)
 
 col1.metric("Jumlah Film", len(df))
-col2.metric("Rata-rata Rating", round(df["Vote_Average"].mean(),2))
+col2.metric("Rata-rata Rating", round(df["Vote_Average"].mean(), 2))
 col3.metric("Jumlah Genre", df["Genre"].nunique())
 col4.metric("Jumlah Bahasa", df["Original_Language"].nunique())
 
