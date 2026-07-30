@@ -52,7 +52,8 @@ df = pd.read_csv(
 # ==========================
 # Preprocessing
 # ==========================
-df["Release_Date"] = pd.to_datetime(df["Release_Date"])
+df["Release_Date"] = pd.to_datetime(df["Release_Date"], errors="coerce")
+df = df.dropna(subset=["Release_Date"])
 
 df["Year"] = df["Release_Date"].dt.year
 
